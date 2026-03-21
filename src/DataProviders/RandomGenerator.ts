@@ -74,6 +74,16 @@ class RandomGenerator {
     }
     return worth;
   }
+
+  static randomizeArray(valuesArray: any[]) {
+    let oldArray = valuesArray;
+    let newArray = [];
+    for (let i = valuesArray.length; i > 0; i--) {
+      const nextIndex = this.getRandomInt(i - 1);
+      newArray.push(oldArray.splice(nextIndex)[0]);
+    }
+    return newArray;
+  }
 }
 
 export default RandomGenerator;

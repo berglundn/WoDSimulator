@@ -1,3 +1,5 @@
+import { AbilityCategory } from "../StatOutline";
+
 const Constants = {
   ArchetypesArray: [
     "Activist",
@@ -78,108 +80,73 @@ const Constants = {
     "Red Thorn Dedicants",
     "Its'at",
   ],
-  Stats: [
-    {
-      key: "Attributes",
-      value: [
-        {
-          key: "Physical",
-          value: [
-            { key: "Strength", value: 0 },
-            { key: "Dexterity", value: 0 },
-            { key: "Stamina", value: 0 },
-          ],
-        },
-        {
-          key: "Social",
-          value: [
-            { key: "Charisma", value: 0 },
-            { key: "Manipulation", value: 0 },
-            { key: "Appearance", value: 0 },
-          ],
-        },
-        {
-          key: "Mental",
-          value: [
-            { key: "Perception", value: 0 },
-            { key: "Intelligence", value: 0 },
-            { key: "Wits", value: 0 },
-          ],
-        },
-      ],
-    },
-    {
-      key: "Abilities",
-      value: [
-        {
-          key: "Talents",
-          value: [
-            { key: "Alertness", value: 0 },
-            { key: "Art", value: 0 },
-            { key: "Athletics", value: 0 },
-            { key: "Awareness", value: 0 },
-            { key: "Brawl", value: 0 },
-            { key: "Empathy", value: 0 },
-            { key: "Expression", value: 0 },
-            { key: "Intimidation", value: 0 },
-            { key: "Leadership", value: 0 },
-            { key: "Streetwise", value: 0 },
-            { key: "Subterfuge", value: 0 },
-          ],
-        },
-        {
-          key: "Skills",
-          value: [
-            { key: "Crafts", value: 0 },
-            { key: "Drive", value: 0 },
-            { key: "Ettiquitte", value: 0 },
-            { key: "Firearms", value: 0 },
-            { key: "Martial Arts", value: 0 },
-            { key: "Meditation", value: 0 },
-            { key: "Melee", value: 0 },
-            { key: "Research", value: 0 },
-            { key: "Stealth", value: 0 },
-            { key: "Survival", value: 0 },
-            { key: "Technology", value: 0 },
-          ],
-        },
-        {
-          key: "Knowledges",
-          value: [
-            { key: "Academics", value: 0 },
-            { key: "Computer", value: 0 },
-            { key: "Cosmology", value: 0 },
-            { key: "Enigmas", value: 0 },
-            { key: "Esoterica", value: 0 },
-            { key: "Investigation", value: 0 },
-            { key: "Law", value: 0 },
-            { key: "Medicine", value: 0 },
-            { key: "Occult", value: 0 },
-            { key: "Politics", value: 0 },
-            { key: "Science", value: 0 },
-          ],
-        },
-      ],
-    },
-
-    { key: "Arete", value: 0 },
-    { key: "Willpower", value: 0 },
-    {
-      key: "Spheres",
-      value: [
-        { key: "Correspondence", value: 0 },
-        { key: "Entropy", value: 0 },
-        { key: "Forces", value: 0 },
-        { key: "Life", value: 0 },
-        { key: "Matter", value: 0 },
-        { key: "Mind", value: 0 },
-        { key: "Prime", value: 0 },
-        { key: "Spirit", value: 0 },
-        { key: "Time", value: 0 },
-      ],
-    },
-    { key: "Backgrounds", value: [{ key: "" }] },
-  ],
+  Stats: {
+    Arete: 0,
+    Willpower: 0,
+    Spheres: [
+      { Correspondence: 0 },
+      { Entropy: 0 },
+      { Forces: 0 },
+      { Life: 0 },
+      { Matter: 0 },
+      { Mind: 0 },
+      { Prime: 0 },
+      { Spirit: 0 },
+      { Time: 0 },
+    ],
+    Backgrounds: [{}],
+  },
 };
 
+export const mageTalents: AbilityCategory = {
+  name: "Talents",
+  enabledStats: [
+    { name: "Alertness", level: 0, specialty: null, enabled: true },
+    { name: "Art", level: 0, specialty: null, enabled: true },
+    { name: "Athletics", level: 0, specialty: null, enabled: true },
+    { name: "Awareness", level: 0, specialty: null, enabled: true },
+    { name: "Brawl", level: 0, specialty: null, enabled: true },
+    { name: "Empathy", level: 0, specialty: null, enabled: true },
+    { name: "Expression", level: 0, specialty: null, enabled: true },
+    { name: "Intimidation", level: 0, specialty: null, enabled: true },
+    { name: "Leadership", level: 0, specialty: null, enabled: true },
+    { name: "Streetwise", level: 0, specialty: null, enabled: true },
+    { name: "Subterfuge", level: 0, specialty: null, enabled: true },
+  ],
+  disabledStats: [],
+};
+export const mageSkills: AbilityCategory = {
+  name: "Skills",
+  enabledStats: [
+    { name: "Crafts", level: 0, specialty: null, enabled: true },
+    { name: "Drive", level: 0, specialty: null, enabled: true },
+    { name: "Ettiquitte", level: 0, specialty: null, enabled: true },
+    { name: "Firearms", level: 0, specialty: null, enabled: true },
+    { name: "MartialArts", level: 0, specialty: null, enabled: true },
+    { name: "Meditation", level: 0, specialty: null, enabled: true },
+    { name: "Melee", level: 0, specialty: null, enabled: true },
+    { name: "Research", level: 0, specialty: null, enabled: true },
+    { name: "Stealth", level: 0, specialty: null, enabled: true },
+    { name: "Survival", level: 0, specialty: null, enabled: true },
+    { name: "Technology", level: 0, specialty: null, enabled: true },
+  ],
+  disabledStats: [],
+};
+export const mageKnowledges: AbilityCategory = {
+  name: "Knowledges",
+  enabledStats: [
+    { name: "Academics", level: 0, specialty: null, enabled: true },
+    { name: "Computer", level: 0, specialty: null, enabled: true },
+    { name: "Cosmology", level: 0, specialty: null, enabled: true },
+    { name: "Enigmas", level: 0, specialty: null, enabled: true },
+    { name: "Esoterica", level: 0, specialty: null, enabled: true },
+    { name: "Investigation", level: 0, specialty: null, enabled: true },
+    { name: "Law", level: 0, specialty: null, enabled: true },
+    { name: "Medicine", level: 0, specialty: null, enabled: true },
+    { name: "Occult", level: 0, specialty: null, enabled: true },
+    { name: "Politics", level: 0, specialty: null, enabled: true },
+    { name: "Science", level: 0, specialty: null, enabled: true },
+  ],
+  disabledStats: [],
+};
 export default Constants;
