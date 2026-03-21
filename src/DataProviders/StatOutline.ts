@@ -31,9 +31,9 @@ export class CharacterStats {
     Mental: { Perception: 0, Intelligence: 0, Wits: 0 },
   };
   abilities = {
-    Talents: {},
-    Skills: {},
-    Knowledges: {},
+    Talents: mageTalents,
+    Skills: mageSkills,
+    Knowledges: mageKnowledges,
   };
 
   constructor() {
@@ -45,7 +45,7 @@ export class CharacterStats {
     this.attributes = this.generateAttributes(1);
   }
   generateAttributes(level: number) {
-    const attributesArray = RandomGenerator.randomizeArray([
+    const attributesArray = RandomGenerator.shuffle([
       "Physical",
       "Social",
       "Mental",
@@ -93,15 +93,6 @@ export class CharacterStats {
       socials = makeAttributeValues(STARTING_ATTRIBUTE_MEDIUM);
       mentals = makeAttributeValues(STARTING_ATTRIBUTE_HIGH);
     }
-    // this.attributes.Physical.Strength = physicals[0];
-    // this.attributes.Physical.Dexterity = physicals[1];
-    // this.attributes.Physical.Stamina = physicals[2];
-    // this.attributes.Social.Charisma = socials[0];
-    // this.attributes.Social.Manipulation = socials[1];
-    // this.attributes.Social.Appearance = socials[2];
-    // this.attributes.Mental.Perception = mentals[0];
-    // this.attributes.Mental.Intelligence = mentals[1];
-    // this.attributes.Mental.Wits = mentals[2];
     return {
       Physical: {
         Strength: physicals[0],
@@ -125,7 +116,7 @@ export class CharacterStats {
     skills: AbilityCategory,
     knowledges: AbilityCategory,
   ) {
-    const abilitesOrder = RandomGenerator.randomizeArray([
+    const abilitesOrder = RandomGenerator.shuffle([
       "Talents",
       "Skills",
       "Knowledges",
@@ -175,7 +166,7 @@ export class CharacterStats {
 }
 
 function makeAbilityValues(value: number, ability: AbilityCategory) {
-  for (let i = 0; i < ability.enabledStats.length; i++) {
+  for (let i = 0; i < value; i++) {
     ability.enabledStats[
       RandomGenerator.getRandomInt(ability.enabledStats.length - 1)
     ].level++;
@@ -190,14 +181,3 @@ function makeAttributeValues(value: number) {
   }
   return threeValues;
 }
-
-// function randomizeOrder(valuesArray: string[]) {
-//   const firstAttributeInt = RandomGenerator.getRandomInt(2);
-//   const firstAttribute = valuesArray[firstAttributeInt];
-//   valuesArray.splice(firstAttributeInt);
-//   const secondAttributeInt = RandomGenerator.getRandomInt(1);
-//   const secondAttribute = valuesArray[secondAttributeInt];
-//   valuesArray.splice(secondAttributeInt);
-//   const thirdAttribute = valuesArray[0];
-//   return [firstAttribute, secondAttribute, thirdAttribute];
-// }
