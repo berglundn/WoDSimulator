@@ -18,11 +18,11 @@ export interface AbilityCategory {
 }
 
 const STARTING_ATTRIBUTE_HIGH = 7;
-const STARTING_ATTRIBUTE_MEDIUM = 6;
-const STARTING_ATTRIBUTE_LOW = 5;
-const STARTING_ABILITY_HIGH = 14;
-const STARTING_ABILITY_MEDIUM = 10;
-const STARTING_ABILITY_LOW = 6;
+const STARTING_ATTRIBUTE_MEDIUM = 5;
+const STARTING_ATTRIBUTE_LOW = 3;
+const STARTING_ABILITY_HIGH = 13;
+const STARTING_ABILITY_MEDIUM = 9;
+const STARTING_ABILITY_LOW = 5;
 
 export class CharacterStats {
   attributes = {
@@ -37,8 +37,12 @@ export class CharacterStats {
   };
 
   constructor() {
-    this.generateAbilities(mageTalents, mageSkills, mageKnowledges);
-    this.generateAttributes(1);
+    this.abilities = this.generateAbilities(
+      mageTalents,
+      mageSkills,
+      mageKnowledges,
+    );
+    this.attributes = this.generateAttributes(1);
   }
   generateAttributes(level: number) {
     const attributesArray = RandomGenerator.randomizeArray([
@@ -166,7 +170,7 @@ export class CharacterStats {
       makeAbilityValues(STARTING_ABILITY_MEDIUM, skills);
       makeAbilityValues(STARTING_ABILITY_LOW, talents);
     }
-    return { talents: talents, skills: skills, knowledges: knowledges };
+    return { Talents: talents, Skills: skills, Knowledges: knowledges };
   }
 }
 
@@ -180,11 +184,10 @@ function makeAbilityValues(value: number, ability: AbilityCategory) {
 }
 
 function makeAttributeValues(value: number) {
-  const threeValues = [0, 0, 0];
+  const threeValues = [1, 1, 1];
   for (let i = 0; i < value; i++) {
-    threeValues[RandomGenerator.getRandomInt(2)]++;
+    threeValues[RandomGenerator.getRandomInt(3)]++;
   }
-  console.log(threeValues + "");
   return threeValues;
 }
 

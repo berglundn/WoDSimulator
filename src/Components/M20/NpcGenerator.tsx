@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RandomGenerator from "../../DataProviders/RandomGenerator";
 import { CharacterStats } from "../../DataProviders/StatOutline";
 
@@ -9,8 +9,8 @@ import { CharacterStats } from "../../DataProviders/StatOutline";
 const NpcGenerator: React.FC<{}> = () => {
   const affliliation = RandomGenerator.getRandomAffiliation();
   const sect = RandomGenerator.getRandomSect(affliliation);
-  // const [stats, setStats] = useState(new CharacterStats());
-  const stats = new CharacterStats();
+  const [stats, setStats] = useState(new CharacterStats());
+
   /**
    * The method of translating raw stat numbers to the stylistic choices of the RPG. Assumes a maximum of 5 value. TODO: Update to not assume maximum of 5
    * @param elementValue Value of character stat, background, or other element being displayed
