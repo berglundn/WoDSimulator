@@ -1,4 +1,5 @@
 import {
+  mageBackgrounds,
   mageKnowledges,
   mageSkills,
   mageTalents,
@@ -37,6 +38,7 @@ type Sphere = {
     | "Dimensional Science"
     | "Primal Utility";
   level: number;
+  specialty?: string;
 };
 
 export type Spheres = {
@@ -50,6 +52,8 @@ const STARTING_ATTRIBUTE_LOW = 3;
 const STARTING_ABILITY_HIGH = 13;
 const STARTING_ABILITY_MEDIUM = 9;
 const STARTING_ABILITY_LOW = 5;
+const STARTING_SPHERE_NUMBER = 6;
+const STARTING_BACKGROUND_NUMBER = 7;
 
 export class CharacterStats {
   attributes = {
@@ -64,7 +68,7 @@ export class CharacterStats {
   };
   arete = 1;
   willpower = 5;
-  // backgrounds = [];
+  backgrounds = mageBackgrounds;
   spheres = {} as Spheres;
 
   constructor() {
@@ -76,6 +80,7 @@ export class CharacterStats {
     );
     this.attributes = this.generateAttributes(1);
     this.generateSpheres([]);
+    this.generateBackgrounds();
   }
   generateAttributes(level?: number) {
     const attributesArray = RandomGenerator.shuffle([
@@ -198,7 +203,7 @@ export class CharacterStats {
   }
   generateSpheres(specialtySpheres: string[]) {
     this.spheres.enabledSpheres.map((sphere) => (sphere.level = 0));
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < STARTING_SPHERE_NUMBER; i++) {
       const randomIndex = RandomGenerator.getRandomInt(
         this.spheres.enabledSpheres.length,
       );
@@ -207,6 +212,14 @@ export class CharacterStats {
       } else {
         i--; //TODO: update this to not be a potentially infinite loop
       }
+    }
+  }
+  generateBackgrounds() {
+    // TODO update this to make a smaller array of values to assign into this
+    this.backgrounds.map((background) => (background.level = 0));
+    for (let i = 0; i < STARTING_BACKGROUND_NUMBER; i++) {
+      this.backgrounds[RandomGenerator.getRandomInt(this.backgrounds.length)]
+        .level++;
     }
   }
 }

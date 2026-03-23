@@ -16,13 +16,23 @@ const NpcGenerator: React.FC<{}> = () => {
    * @param elementValue Value of character stat, background, or other element being displayed
    * @returns A string of ASCII circles and filled circles, with the filled circles signifying the input elementValue
    */
-  function makePips(elementValue: number) {
+  function makePips(elementValue: number, maximum?: number) {
     var returnHtml = "";
     for (var i = 0; i < elementValue; i++) {
       returnHtml += "\u{25C9}";
     }
-    for (var j = 5 - elementValue; j > 0; j--) {
+    for (var j = (maximum ?? 5) - elementValue; j > 0; j--) {
       returnHtml += "\u{25CE}";
+    }
+    return returnHtml;
+  }
+  function makeBoxes(elementValue: number, maximum?: number) {
+    var returnHtml = "";
+    for (var i = 0; i < elementValue; i++) {
+      returnHtml += "\u{2610}";
+    }
+    for (var j = (maximum ?? 5) - elementValue; j > 0; j--) {
+      returnHtml += "\u{2612}";
     }
     return returnHtml;
   }
@@ -112,6 +122,30 @@ const NpcGenerator: React.FC<{}> = () => {
       </div>
 
       <h1>Advantages</h1>
+      <h2>Backgrounds</h2>
+      <div className="grid">
+        {stats.backgrounds.map((background) => {
+          if (background.level != 0) {
+            return (
+              <div>
+                <b>{background.name}:</b> {makePips(background.level)}
+              </div>
+            );
+          }
+        })}
+      </div>
+      <h2>Arete</h2>
+      {makePips(stats.arete, 10)}
+      <h2>Willpower</h2>
+      <div className="flex-row">
+        {makePips(stats.willpower, 10)}
+        {makeBoxes(stats.willpower, 10)}
+      </div>
+
+      <h2>Quintessence</h2>
+      <h2>Health</h2>
+      <h2>Other Traits</h2>
+      <h2>Experience</h2>
       <h1>Merits & Flaws</h1>
       <h1>Other Traits</h1>
       <h1>Magic</h1>
