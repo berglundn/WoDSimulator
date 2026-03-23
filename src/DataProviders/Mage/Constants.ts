@@ -1,4 +1,4 @@
-import { AbilityCategory } from "../StatOutline";
+import { AbilityCategory, Spheres } from "../StatOutline";
 
 const Constants = {
   ArchetypesArray: [
@@ -148,5 +148,42 @@ export const mageKnowledges: AbilityCategory = {
     { name: "Science", level: 0, specialty: null, enabled: true },
   ],
   disabledStats: [],
+};
+export const traditionSpheres: Spheres = {
+  enabledSpheres: [
+    { name: "Correspondance", level: 0 },
+    { name: "Entropy", level: 0 },
+    { name: "Forces", level: 0 },
+    { name: "Life", level: 0 },
+    { name: "Matter", level: 0 },
+    { name: "Mind", level: 0 },
+    { name: "Prime", level: 0 },
+    { name: "Spirit", level: 0 },
+    { name: "Time", level: 0 },
+  ],
+  disabledSpheres: [
+    { name: "Data", level: 0 },
+    { name: "Dimensional Science", level: 0 },
+    { name: "Primal Utility", level: 0 },
+  ],
+};
+
+export const technocratSpheres: Spheres = {
+  enabledSpheres: [
+    { name: "Data", level: 0 },
+    { name: "Entropy", level: 0 },
+    { name: "Forces", level: 0 },
+    { name: "Life", level: 0 },
+    { name: "Matter", level: 0 },
+    { name: "Mind", level: 0 },
+    { name: "Primal Utility", level: 0 },
+    { name: "Dimensional Science", level: 0 },
+    { name: "Time", level: 0 },
+  ],
+  disabledSpheres: [
+    { name: "Correspondance", level: 0 },
+    { name: "Prime", level: 0 },
+    { name: "Spirit", level: 0 },
+  ],
 };
 export default Constants;

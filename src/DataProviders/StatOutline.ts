@@ -1,21 +1,48 @@
-import { mageKnowledges, mageSkills, mageTalents } from "./Mage/Constants";
+import {
+  mageKnowledges,
+  mageSkills,
+  mageTalents,
+  traditionSpheres,
+} from "./Mage/Constants";
 import RandomGenerator from "./RandomGenerator";
 
-export interface Statistic {
+export type Statistic = {
   name: string;
   level: number;
   specialty: string | null;
-} // TODO implement this
+}; // TODO implement this
 
-export interface AbilityStat extends Statistic {
+export type AbilityStat = Statistic & {
   enabled: boolean;
-}
+};
 
-export interface AbilityCategory {
+export type AbilityCategory = {
   name: string;
   enabledStats: AbilityStat[];
   disabledStats: AbilityStat[];
-}
+};
+
+type Sphere = {
+  name:
+    | "Correspondance"
+    | "Entropy"
+    | "Forces"
+    | "Life"
+    | "Matter"
+    | "Mind"
+    | "Prime"
+    | "Spirit"
+    | "Time"
+    | "Data"
+    | "Dimensional Science"
+    | "Primal Utility";
+  level: number;
+};
+
+export type Spheres = {
+  enabledSpheres: Sphere[];
+  disabledSpheres: Sphere[];
+};
 
 const STARTING_ATTRIBUTE_HIGH = 7;
 const STARTING_ATTRIBUTE_MEDIUM = 5;
@@ -35,16 +62,22 @@ export class CharacterStats {
     Skills: mageSkills,
     Knowledges: mageKnowledges,
   };
+  arete = 1;
+  willpower = 5;
+  // backgrounds = [];
+  spheres = {} as Spheres;
 
   constructor() {
+    this.spheres = traditionSpheres;
     this.abilities = this.generateAbilities(
       mageTalents,
       mageSkills,
       mageKnowledges,
     );
     this.attributes = this.generateAttributes(1);
+    this.generateSpheres([]);
   }
-  generateAttributes(level: number) {
+  generateAttributes(level?: number) {
     const attributesArray = RandomGenerator.shuffle([
       "Physical",
       "Social",
@@ -163,9 +196,24 @@ export class CharacterStats {
     }
     return { Talents: talents, Skills: skills, Knowledges: knowledges };
   }
+  generateSpheres(specialtySpheres: string[]) {
+    this.spheres.enabledSpheres.map((sphere) => (sphere.level = 0));
+    for (let i = 0; i < 6; i++) {
+      const randomIndex = RandomGenerator.getRandomInt(
+        this.spheres.enabledSpheres.length,
+      );
+      if (this.spheres.enabledSpheres[randomIndex].level < this.arete) {
+        this.spheres.enabledSpheres[randomIndex].level++;
+      } else {
+        i--; //TODO: update this to not be a potentially infinite loop
+      }
+    }
+  }
 }
 
 function makeAbilityValues(value: number, ability: AbilityCategory) {
+  ability.enabledStats.map((x) => (x.level = 0));
+  //TODO figure out if it's more efficient to check category name and (re)set to Constant's value
   for (let i = 0; i < value; i++) {
     ability.enabledStats[
       RandomGenerator.getRandomInt(ability.enabledStats.length - 1)

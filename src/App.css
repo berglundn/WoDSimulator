@@ -37,13 +37,19 @@
   }
 } */
 
-.flex-column{
+.flex-column {
   display: flex;
   flex-direction: column;
   margin: 1%;
 }
 
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
 }
