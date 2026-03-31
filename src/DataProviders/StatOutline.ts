@@ -227,6 +227,7 @@ export class CharacterStats {
 function makeAbilityValues(value: number, ability: AbilityCategory) {
   ability.enabledStats.map((x) => (x.level = 0));
   //TODO figure out if it's more efficient to check category name and (re)set to Constant's value
+  //TODO make this not truly random
   for (let i = 0; i < value; i++) {
     ability.enabledStats[
       RandomGenerator.getRandomInt(ability.enabledStats.length - 1)
